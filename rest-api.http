@@ -4,3 +4,16 @@
 
 ###
 GET {{BASE_URL}}/api HTTP/1.1
+
+
+
+###
+GET {{BASE_URL}}/api/quotes/init HTTP/1.1
+
+
+###
+GET {{BASE_URL}}/api/quotes/health HTTP/1.1
+
+
+###
+GET {{BASE_URL}}/api/quotes/seed HTTP/1.1
