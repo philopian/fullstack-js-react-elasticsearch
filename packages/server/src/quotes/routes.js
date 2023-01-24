@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { createQuoteIndex, checkQuoteConnection, populateDatabase } from './store.js'
+import { createQuoteIndex, checkQuoteConnection } from './store.js'
 
 const router = Router()
 
@@ -11,10 +11,6 @@ router.get('/init', (req, res) => {
 })
 router.get('/health', async (req, res) => {
   const status = await checkQuoteConnection()
-  res.send(status)
-})
-router.get('/seed', async (req, res) => {
-  const status = await populateDatabase()
   res.send(status)
 })
 
