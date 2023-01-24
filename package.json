@@ -1,0 +1,23 @@
+{
+  "name": "elastic-nodejs-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Phil Willis <philopian@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "yarn workspace server dev",
+    "lint": "prettier --write packages/{client,server}/src/**/*.{j,t}s{,x}"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "concurrently": "^7.6.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.3"
+  }
+}
