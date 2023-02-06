@@ -1,14 +1,28 @@
-import { createIndex, setMapping, checkConnection } from '../utils/elasticsearch.js'
+//
+
+/**
+ *
+ * Interact with the DB directly, write the specific SQL & queries
+ * DB specific syntax
+ *
+ *
+ */
+import { Client } from '@elastic/elasticsearch'
+
+const client = new Client({ node: 'http://localhost:9200' })
 
 const index = 'quotes'
-const type = 'quotes'
 
-export async function createQuoteIndex() {
-  await createIndex(index)
-  await setMapping(index)
-}
+export async function getAllQuotes() {
+  const { body } = await client.search({
+    index,
+    body: {
+      query: {
+        match_all: {},
+      },
+    },
+  })
 
-export async function checkQuoteConnection() {
-  const status = await checkConnection()
-  return status
+  console.log(body.hits.hits)
+  return body
 }

@@ -10,6 +10,11 @@
     "packages/*"
   ],
   "scripts": {
+    "db:cleanup": "yarn workspace db cleanup",
+    "db:setup": "yarn workspace db db:setup",
+    "preup": "yarn workspace db up",
+    "up": "yarn start",
+    "start": "concurrently 'yarn dev:server' ",
     "dev:server": "yarn workspace server dev",
     "lint": "prettier --write packages/{client,server}/src/**/*.{j,t}s{,x}"
   },
@@ -19,5 +24,8 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.3"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.17.0"
   }
 }
