@@ -1,0 +1,13 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "up": "docker compose up -d",
+    "stop": "docker compose stope",
+    "cleanup": "docker compose down --volumes",
+    "db:setup": "node seed/quotes.js"
+  }
+}
