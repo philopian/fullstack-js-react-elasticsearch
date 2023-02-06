@@ -1,0 +1,13 @@
+paths:
+  /quote:
+    get:
+      description: Get all quote
+      produces:
+        - application/json
+      responses:
+        200:
+          description: An array of quote
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Quote'

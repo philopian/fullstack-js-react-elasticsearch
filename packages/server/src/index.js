@@ -1,9 +1,11 @@
 import cors from 'cors'
 import express from 'express'
+import swaggerUi from 'swagger-ui-express'
 
 import config from './config.js'
 import { errorBadJson } from './middleware/error-handler.js'
 import routes from './routes.js'
+import swaggerSpec from './swagger-specs.js'
 
 const { REST_PORT, REST_API_URL } = config
 const app = express()
@@ -12,6 +14,7 @@ const app = express()
 app.use(errorBadJson)
 app.use(express.json())
 app.use(cors(config.corsOptions))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 routes(app)
 

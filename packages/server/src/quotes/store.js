@@ -24,5 +24,5 @@ export async function getAllQuotes() {
   })
 
   console.log(body.hits.hits)
-  return body
+  return body.hits.hits
 }

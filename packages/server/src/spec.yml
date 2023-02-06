@@ -1,0 +1,14 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: User API
+  description: A simple API for managing quote
+  contact:
+    name: API Support
+    email: support@example.com
+    url: 'https://example.com/contact'
+
+host: 'localhost:3000'
+basePath: '/api'
+schemes:
+  - http

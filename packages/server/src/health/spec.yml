@@ -1,0 +1,14 @@
+paths:
+  /health:
+    get:
+      description: Check to see if the connection to the DB is valid
+      produces:
+        - application/json
+      responses:
+        200:
+          description: An array of users
+          schema:
+            type: string
+            items:
+              $ref: '#/definitions/Health'
+
