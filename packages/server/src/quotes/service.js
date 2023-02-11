@@ -8,10 +8,10 @@
  *
  *
  */
-import { getAllQuotes } from './store.js'
+import { readAllQuotes } from './store.js'
 
 export function getQuote(id) {}
 
 export async function getQuotes() {
-  return getAllQuotes()
+  return readAllQuotes()
 }
