@@ -14,17 +14,15 @@ const client = new Client({ node: 'http://localhost:9200' })
 const index = 'quotes'
 
 // Create a quote
-export async function createQuote(quote) {
-  const { id, author, quote } = quote
-
-  const response = await client.index({
-    index: 'quotes',
-    id,
+export async function createQuote({ author, quote }) {
+  const insertObject = {
+    index,
     body: {
       author,
       quote,
     },
-  })
+  }
+  const response = await client.index(insertObject)
 
   return response.body
 }
@@ -32,7 +30,7 @@ export async function createQuote(quote) {
 // Read a quote by ID
 export async function readQuote(id) {
   const response = await client.get({
-    index: 'quotes',
+    index,
     id,
   })
 
@@ -50,15 +48,13 @@ export async function readAllQuotes() {
     },
   })
 
-  return body.hits.hits
+  return body.hits
 }
 
 // Update a quote
-export async function updateQuote(id, quote) {
-  const { author, quote } = quote
-
+export async function updateQuote({ id, author, quote }) {
   const response = await client.update({
-    index: 'quotes',
+    index,
     id,
     body: {
       doc: {
@@ -74,7 +70,7 @@ export async function updateQuote(id, quote) {
 // Delete a quote
 export async function deleteQuote(id) {
   const response = await client.delete({
-    index: 'quotes',
+    index,
     id,
   })
 
