@@ -19,4 +19,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "elastic-nodejs-app",
+      "database": "${workspaceFolder:elastic-nodejs-app}/packages/server/prisma/dev.db"
+    }
+  ],
 }
