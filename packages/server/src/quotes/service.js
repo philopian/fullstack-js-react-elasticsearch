@@ -25,7 +25,7 @@ export async function getItem(id) {
 
 export async function getAllItems() {
   const result = await readAllQuotes()
-  return result.map(({ _id, _index, _source }) => ({ _id, _index, ..._source }))
+  return result.hits.map(({ _id, _index, _source }) => ({ _id, _index, ..._source }))
 }
 
 export async function updateItem({ id, author, quote }) {

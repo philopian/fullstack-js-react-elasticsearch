@@ -27,40 +27,45 @@ export const mockClient = {
   }),
   search: jest.fn().mockReturnValue({
     body: {
-      total: { value: 3, relation: 'eq' },
-      max_score: 1,
-      hits: [
-        {
-          _index: indexName,
-          _type: '_doc',
-          _id: '1',
-          _score: 1,
-          _source: {
-            author: 'some',
-            quote: 'one',
+      took: 0,
+      timed_out: false,
+      _shards: { total: 1, successful: 1, skipped: 0, failed: 0 },
+      hits: {
+        total: { value: 132, relation: 'eq' },
+        max_score: 1,
+        hits: [
+          {
+            _index: indexName,
+            _type: '_doc',
+            _id: '1',
+            _score: 1,
+            _source: {
+              author: 'some',
+              quote: 'one',
+            },
           },
-        },
-        {
-          _index: indexName,
-          _type: '_doc',
-          _id: '2',
-          _score: 1,
-          _source: {
-            author: 'one',
-            quote: 'two',
+          {
+            _index: indexName,
+            _type: '_doc',
+            _id: '2',
+            _score: 1,
+            _source: {
+              author: 'one',
+              quote: 'two',
+            },
           },
-        },
-        {
-          _index: indexName,
-          _type: '_doc',
-          _id: '3',
-          _score: 1,
-          _source: {
-            author: 'rad',
-            quote: 'three',
+          {
+            _index: indexName,
+            _type: '_doc',
+            _id: '3',
+            _score: 1,
+            _source: {
+              author: 'rad',
+              quote: 'three',
+            },
           },
-        },
-      ],
+        ],
+      },
     },
   }),
 

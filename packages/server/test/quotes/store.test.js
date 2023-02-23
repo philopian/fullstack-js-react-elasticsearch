@@ -28,9 +28,9 @@ describe('quotes CRUD functions', () => {
   })
 
   test('readAllQuotes', async () => {
-    const response = await readAllQuotes()
-
-    expect(response.length).toEqual(3)
+    const { hits } = await readAllQuotes()
+    console.log('[readAllQuotes]', hits)
+    expect(hits.length).toEqual(3)
   })
 
   test('updateQuote', async () => {
