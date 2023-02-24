@@ -19,4 +19,33 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "elastic-nodejs-app",
+      "database": "${workspaceFolder:elastic-nodejs-app}/packages/server/prisma/dev.db"
+    }
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#7b3954",
+    "activityBar.background": "#7b3954",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#0f160a",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#7b3954",
+    "statusBar.background": "#58293c",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#7b3954",
+    "statusBarItem.remoteBackground": "#58293c",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#58293c",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#58293c99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#58293c",
 }

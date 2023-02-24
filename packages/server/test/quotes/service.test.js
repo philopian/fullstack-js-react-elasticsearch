@@ -1,7 +1,5 @@
 import { addItem, getItem, getAllItems, updateItem, deleteItem } from '../../src/quotes/service.js'
 
-const indexName = 'mocked'
-
 describe('service: `quotes`', () => {
   test('addItem', async () => {
     const result = await addItem({ author: 'something', quote: 'new' })
