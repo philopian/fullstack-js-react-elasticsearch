@@ -1,6 +1,13 @@
 import { mockDeep, mockReset } from 'jest-mock-extended'
 
-import { createUser, getUser, getAllUsers, updateUser, deleteUser } from '../../src/users/store.js'
+import {
+  createUser,
+  getUserById,
+  getUserByEmail,
+  getAllUsers,
+  updateUser,
+  deleteUser,
+} from '../../src/users/store.js'
 import prisma from '../../src/utils/prisma.js'
 
 jest.mock('../../src/utils/prisma.js', () => ({
@@ -15,51 +22,63 @@ beforeEach(() => {
 export const prismaMock = prisma
 
 describe('Store', () => {
-  test('should create new user ', async () => {
-    const user = {
-      name: 'Rich',
-      email: 'hello@prisma.io',
-      password: '123456789',
-    }
+  test('should CREATE new user ', async () => {
+    const user = { name: 'Rich', email: 'hello@prisma.io' }
 
-    prismaMock.user.create.mockResolvedValue({ ...user, id: 1 })
+    prismaMock.user.create.mockResolvedValue({ ...user, id: '1' })
 
-    await expect(createUser(user)).resolves.toEqual({ ...user, id: 1 })
+    const actual = await createUser({ ...user, password: '12345' })
+    const expected = { ...user, id: '1' }
+    expect(actual).toEqual(expected)
   })
 
-  test('should read a user ', async () => {
-    const id = 1
-    const user = {
-      id: 1,
-      name: 'Rich',
-      email: 'hello@prisma.io',
-      password: '123456789',
-    }
+  test('should READ a user via getUserById()', async () => {
+    const id = '1'
+    const user = { id, name: 'Rich', email: 'hello@prisma.io' }
 
     prisma.user.findFirst.mockResolvedValue(user)
 
-    await expect(getUser(id)).resolves.toEqual(user)
+    const actual = await getUserById(id)
+
+    expect(id).toEqual(user.id)
+    expect(actual).toEqual(user)
+    expect(actual.hasOwnProperty('password')).toEqual(false)
+    expect(actual.hasOwnProperty('salt')).toEqual(false)
+    expect(actual.hasOwnProperty('id')).toEqual(true)
+    expect(actual.hasOwnProperty('email')).toEqual(true)
   })
 
-  test('should read all users ', async () => {
+  test('should READ user via getUserByEmail()', async () => {
+    const email = 'hello@email.com'
+    const user = { id: '99', name: 'Rich', email }
+
+    prisma.user.findFirst.mockResolvedValue(user)
+
+    const actual = await getUserByEmail(email)
+
+    expect(email).toEqual(user.email)
+    expect(actual).toEqual(user)
+    expect(actual.hasOwnProperty('password')).toEqual(false)
+    expect(actual.hasOwnProperty('salt')).toEqual(false)
+    expect(actual.hasOwnProperty('id')).toEqual(true)
+    expect(actual.hasOwnProperty('email')).toEqual(true)
+  })
+
+  test('should READ ALL users ', async () => {
     const users = [
-      {
-        id: 1,
-        name: 'Rich',
-        email: 'one@prisma.io',
-        password: '123456789',
-      },
-      {
-        id: 2,
-        name: 'Rich',
-        email: 'two@prisma.io',
-        password: '123456789',
-      },
+      { id: 1, name: 'Rich', email: 'one@prisma.io' },
+      { id: 2, name: 'Rich', email: 'two@prisma.io' },
     ]
 
     prismaMock.user.findMany.mockResolvedValue(users)
 
-    await expect(getAllUsers()).resolves.toEqual(users)
+    const actual = await getAllUsers()
+
+    expect(actual).toEqual(users)
+    expect(actual[0].hasOwnProperty('password')).toEqual(false)
+    expect(actual[0].hasOwnProperty('salt')).toEqual(false)
+    expect(actual[0].hasOwnProperty('id')).toEqual(true)
+    expect(actual[0].hasOwnProperty('email')).toEqual(true)
   })
 
   test('should update a users name ', async () => {
@@ -67,17 +86,16 @@ describe('Store', () => {
       id: 1,
       name: 'Rich Haines',
       email: 'hello@prisma.io',
-      password: '123456789',
     }
 
     prismaMock.user.update.mockResolvedValue(user)
 
-    await expect(updateUser(user)).resolves.toEqual({
-      id: 1,
-      name: 'Rich Haines',
-      email: 'hello@prisma.io',
-      password: '123456789',
-    })
+    const actual = await updateUser({ ...user, password: '1234' })
+    expect(actual).toEqual(user)
+    expect(actual.hasOwnProperty('password')).toEqual(false)
+    expect(actual.hasOwnProperty('salt')).toEqual(false)
+    expect(actual.hasOwnProperty('id')).toEqual(true)
+    expect(actual.hasOwnProperty('email')).toEqual(true)
   })
 
   test('should delete a user ', async () => {
@@ -85,7 +103,6 @@ describe('Store', () => {
       id: 1,
       name: 'Rich Haines',
       email: 'hello@prisma.io',
-      password: '123456789',
     }
 
     prismaMock.user.delete.mockResolvedValue(user)

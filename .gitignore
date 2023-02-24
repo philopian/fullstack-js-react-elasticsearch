@@ -1,4 +1,7 @@
 node_modules
 _IGNORE_
 .DS_Store
+
+
+.env
 packages/server/.env
