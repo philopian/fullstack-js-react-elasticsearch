@@ -2,18 +2,11 @@ definitions:
   Quote:
     type: object
     properties:
-      _index:
-        type: string
-      _type:
-        type: string
       _id:
         type: string
-      _score:
-        type: number
-      _source:
-        type: object
-        properties:
-          quote:
-            type: string
-          author: 
-            type: string
+      _index:
+        type: string
+      quote:
+        type: string
+      author:
+        type: string

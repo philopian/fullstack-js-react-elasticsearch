@@ -1,13 +1,74 @@
 paths:
   /quote:
     get:
-      description: Get all quote
+      description: Get all quotes
       produces:
         - application/json
       responses:
         200:
-          description: An array of quote
+          description: An array of quotes
           schema:
             type: array
             items:
               $ref: '#/definitions/Quote'
+    post:
+      description: Create a new post
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Quote'
+    put:
+      description: Update a quote
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Quote'
+
+  /quote/{id}:
+    get:
+      description: Get a single quote for a specific id
+      parameters:
+        - name: id
+          in: path
+          description: Provide a quote ID to act on
+          required: true
+          schema:
+            type: string
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Quote'
+    delete:
+      description: Delete a quote by ID
+      parameters:
+        - name: id
+          in: path
+          description: Provide a quote ID to act on
+          required: true
+          schema:
+            type: string
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Quote'
+
+
+
+
+
+
+

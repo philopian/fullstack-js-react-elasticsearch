@@ -2,10 +2,10 @@ import cors from 'cors'
 import express from 'express'
 import swaggerUi from 'swagger-ui-express'
 
+import swaggerSpec from './api-spec/swagger-specs.js'
 import config from './config.js'
 import { errorBadJson } from './middleware/error-handler.js'
 import routes from './routes.js'
-import swaggerSpec from './swagger-specs.js'
 
 const { REST_PORT, REST_API_URL } = config
 const app = express()
