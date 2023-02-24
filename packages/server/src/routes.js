@@ -9,5 +9,5 @@ export default function routes(app) {
 
   // Routes
   api.use('/health', health)
-  api.use('/quotes', quotes)
+  api.use('/quote', quotes)
 }
